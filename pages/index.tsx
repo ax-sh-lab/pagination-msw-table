@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Book, Review } from '../mocks/types'
+import axios from 'axios'
 
 type Props = {
   book: Book
@@ -37,8 +38,8 @@ export default function Home({ book }: Props) {
 
 export async function getServerSideProps() {
   // Server-side requests are mocked by `mocks/server.ts`.
-  const res = await fetch('https://my.backend/book')
-  const book = await res.json()
+  const res = await axios.get('https://my.backend/book')
+  const book = await res.data
 
   return {
     props: {
