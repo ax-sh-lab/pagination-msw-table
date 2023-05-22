@@ -7,9 +7,10 @@ import React from 'react'
 import {
   PaginationState,
 } from '@tanstack/react-table'
+import PaginationTable from '../components/PaginationTable'
 
-function fetchData({}:PaginationState){
-  return axios.get('/posts') 
+function fetchData({pageSize,pageIndex}:PaginationState){
+  return axios.get('/posts',{params:{page:pageIndex}}).then(x=>x.data)
 }
 
 
@@ -32,20 +33,11 @@ export default function Home() {
     { keepPreviousData: true }
   )
 
-  const defaultData = React.useMemo(() => [], [])
-
-  const pagination = React.useMemo(
-    () => ({
-      pageIndex,
-      pageSize,
-    }),
-    [pageIndex, pageSize]
-  )
- 
+  const pagination = React.useMemo(() => ({pageIndex, pageSize,}),[pageIndex, pageSize])
 
   return (
     <div>
-     
+     <PaginationTable dataQuery={dataQuery} pagination={pagination} setPagination={setPagination}/>
     </div>
   )
 }

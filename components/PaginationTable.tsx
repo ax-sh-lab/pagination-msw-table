@@ -7,11 +7,10 @@ import {
   } from '@tanstack/react-table'
 import React from 'react'
 
-function PaginationTable({dataQuery, pagination, setPagination}:any){
-    const columns = React.useMemo<ColumnDef<any>[]>(() =>[{
-        header: 'Name',
-    }])
+export default function PaginationTable({dataQuery, pagination, setPagination}:any){
+    const columns = React.useMemo<ColumnDef<any>[]>(() =>[{header: 'name',accessorKey:'name'}],[])
     const defaultData = React.useMemo(() => [], [])
+   
     const table = useReactTable({
       data: dataQuery.data?.rows ?? defaultData,
       columns,

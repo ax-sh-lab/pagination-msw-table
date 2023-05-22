@@ -39,9 +39,9 @@ export const handlersa = [
 
     return res(
       ctx.json({
-        data,
+        rows:data,
         page,
-        total_pages: Math.ceil(db.post.count() / per_page),
+        pageCount: Math.ceil(db.post.count() / per_page),
         total: db.post.count(),
       })
     )
