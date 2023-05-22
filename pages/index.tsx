@@ -1,49 +1,51 @@
-import { useState } from 'react'
-import { Book, Review } from '../mocks/types'
-import axios from 'axios'
 
-type Props = {
-  book: Book
+import axios from 'axios'
+import {
+  useQuery,
+} from '@tanstack/react-query'
+import React from 'react'
+import {
+  PaginationState,
+} from '@tanstack/react-table'
+
+function fetchData({}:PaginationState){
+  return axios.get('/posts') 
 }
 
-export default function Home({ book }: Props) {
-  const [reviews, setReviews] = useState<Review[] | null>(null)
 
-  const handleGetReviews = () => {
-    // Client-side request are mocked by `mocks/browser.ts`.
-    fetch('/reviews')
-      .then((res) => res.json())
-      .then(setReviews)
+
+export default function Home() {
+  const [{ pageIndex, pageSize }, setPagination] =
+    React.useState<PaginationState>({
+      pageIndex: 0,
+      pageSize: 10,
+    })
+
+  const fetchDataOptions = {
+    pageIndex,
+    pageSize,
   }
+
+  const dataQuery = useQuery(
+    ['data', fetchDataOptions],
+    () => fetchData(fetchDataOptions),
+    { keepPreviousData: true }
+  )
+
+  const defaultData = React.useMemo(() => [], [])
+
+  const pagination = React.useMemo(
+    () => ({
+      pageIndex,
+      pageSize,
+    }),
+    [pageIndex, pageSize]
+  )
+ 
 
   return (
     <div>
-      <img src={book.imageUrl} alt={book.title} width="250" />
-      <h1>{book.title}</h1>
-      <p>{book.description}</p>
-      <button onClick={handleGetReviews}>Load reviews</button>
-      {reviews && (
-        <ul>
-          {reviews.map((review) => (
-            <li key={review.id}>
-              <p>{review.text}</p>
-              <p>{review.author}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+     
     </div>
   )
-}
-
-export async function getServerSideProps() {
-  // Server-side requests are mocked by `mocks/server.ts`.
-  const res = await axios.get('https://my.backend/book')
-  const book = await res.data
-
-  return {
-    props: {
-      book,
-    },
-  }
 }
