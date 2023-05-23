@@ -24,10 +24,13 @@ function createUserData(): User {
 
 [...new Array(500)].forEach((_) => db.post.create(createUserData()));
 
+type SortBy = "name" | "length";
 export const handlersa = [
   rest.get("/posts", (req, res, ctx) => {
     const page = (req.url.searchParams.get("page") || 1) as number;
     const per_page = (req.url.searchParams.get("per_page") || 10) as number;
+    const sortBy = req.url.searchParams.get("per_page") as SortBy;
+    console.log(sortBy, "text");
     const data = db.post.findMany({
       take: per_page,
       skip: Math.max(per_page * (page - 1), 0),
