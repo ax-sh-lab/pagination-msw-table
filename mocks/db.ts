@@ -34,6 +34,7 @@ export const handlersa = [
     });
 
     return res(
+      ctx.delay(1500),
       ctx.json({
         rows: data,
         page,
