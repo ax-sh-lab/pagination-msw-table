@@ -1,38 +1,22 @@
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { PaginationState } from "@tanstack/react-table";
 import PaginationTable from "../components/PaginationTable";
+import { useManualPaginationQuery } from "../hooks/useManualPaginationQuery";
 
-function fetchData({ pageSize, pageIndex }: PaginationState) {
+function fetchPosts({ pageSize, pageIndex }: PaginationState) {
   return axios
     .get("/posts", { params: { page: pageIndex } })
     .then((x) => x.data);
 }
 
 export default function Home() {
-  const [{ pageIndex, pageSize }, setPagination] =
-    React.useState<PaginationState>({
-      pageIndex: 0,
-      pageSize: 10,
-    });
-
-  const fetchDataOptions = {
-    pageIndex,
-    pageSize,
-  };
-
-  const dataQuery = useQuery(
-    ["data", fetchDataOptions],
-    () => fetchData(fetchDataOptions),
-    { keepPreviousData: true }
+  const { dataQuery, pagination, setPagination } = useManualPaginationQuery(
+    "data",
+    fetchPosts
   );
 
-  const pagination = React.useMemo(
-    () => ({ pageIndex, pageSize }),
-    [pageIndex, pageSize]
-  );
-
+  if (dataQuery.isLoading) return <>loading</>;
   return (
     <div>
       <PaginationTable
