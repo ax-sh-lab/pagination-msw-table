@@ -1,27 +1,27 @@
-import { useUsersQuery } from "@/hooks/queries/use-users-query";
-import { useState } from "react";
-import { PaginationState, SortingState } from "@tanstack/react-table";
 import { DataTable } from "@/ui/data-table";
 import { JSONViewer } from "@/ui/JSONViewer";
+import { useUsersPaginationQuery } from "@/hooks/queries/use-users-pagination-query";
 
 export function UsersTable() {
-  const users = useUsersQuery({});
-  const [pagination, setPagination] = useState<PaginationState>({
-    pageSize: 10,
-    pageIndex: 0,
+  const users = useUsersPaginationQuery({
+    pagination: {
+      pageIndex: 1,
+      pageSize: 10,
+    },
+    sorting: [{ desc: true, id: "" }],
+    searchQuery: "",
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { desc: true, id: "" },
-  ]);
+  console.log(users.data, 888);
+
   return (
     <div>
       <DataTable
         columns={[]}
-        data={[]}
-        pagination={pagination}
-        setPagination={setPagination}
-        setSorting={setSorting}
-        sorting={sorting}
+        data={users.data}
+        pagination={users.pagination}
+        setPagination={users.setPagination}
+        setSorting={users.setSorting}
+        sorting={users.sorting}
       />
 
       <JSONViewer data={users.data} />
