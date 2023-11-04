@@ -1,6 +1,7 @@
 import {
   ColumnDef,
   getCoreRowModel,
+  getSortedRowModel,
   PaginationState,
   SortingState,
   Updater,
@@ -18,12 +19,32 @@ type DataTableProps<TColumn extends object> = {
   setSorting: Dispatch<SetStateAction<SortingState>>;
 };
 
-export function DataTable<TColumn extends object>({}: DataTableProps<TColumn>) {
+export function DataTable<TColumn extends object>({
+  columns,
+  data,
+  sorting,
+  setSorting,
+
+  pagination,
+  setPagination,
+}: DataTableProps<TColumn>) {
   const table = useReactTable({
+    manualPagination: true,
+    // debugTable: sta !== pr,
+    onPaginationChange: setPagination,
+    onSortingChange: setSorting,
+    // onColumnVisibilityChange: setColumnVisibility,
+    // onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
-    state: {},
-    columns: [],
-    data: [],
+    getSortedRowModel: getSortedRowModel(),
+
+    state: {
+      pagination,
+      sorting,
+      // rowSelection, columnVisibility
+    },
+    columns,
+    data,
   });
   return null;
 }
