@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import clsx from "clsx";
 import { useQuery } from "@tanstack/react-query";
 import { API_ROUTE, fetchProfile } from "@/api";
+import Loader from "@/ui/loader";
 const inter = Inter({ subsets: ["latin"] });
 
 function useProfileQuery() {
@@ -10,7 +11,7 @@ function useProfileQuery() {
 
 export default function Home() {
   const { data, isLoading, isError, error } = useProfileQuery();
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
@@ -18,7 +19,11 @@ export default function Home() {
   return (
     <main
       className={clsx(
-        `flex min-h-screen flex-col items-center justify-between p-24`,
+        "flex flex-col",
+        "items-center justify-between",
+        `min-h-screen`,
+        "container mx-auto",
+
         inter.className,
       )}
     >
