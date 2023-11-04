@@ -49,40 +49,27 @@ describe("api component testing", () => {
   beforeAll(() => server.listen({ onUnhandledRequest: "warn" }));
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
-
   it("show successful result", async () => {
     // server.use(usersListMockHandler);
-    server.use(
-      http.post(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
-        console.log(999999999);
-        return HttpResponse.json({ k: 9 });
-      }),
-    );
-    console.log(11111, mockAPIBaseJoinPath(API_ROUTE.USERS));
     // server.use(
-    //   http.post(, () => {
+    //   http.post(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
+    //     console.log(999999999);
     //     return HttpResponse.json({ k: 9 });
     //   }),
     // );
 
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
-    const testID = /UsersTable/;
-    // const component = screen.queryByTestId(testID);
-    // // const component = screen.getByTestId(testID);
-    const component = await screen.findByTestId(testID);
-    await waitFor(() => expect(component).toBeInTheDocument());
 
-    // // await waitForElementToBeRemoved(() => screen.findByText(/Loading.../));
-    // // expect(component).toBeInTheDocument();
-    // // console.log(component, 34343434);
-    // screen.logTestingPlaygroundURL();
-    // // 🕗 Wait for the posts request to be finished.
-    // // await waitFor(() => {
-    // //   expect(screen.getByText(/Loading.../)).not.toBeInTheDocument();
-    // // });
-    // // expect(screen.findByText(/Loading.../)).not.toBeInTheDocument();
-    // // screen.logTestingPlaygroundURL();
+    // await waitFor(() => expect(component).toBeInTheDocument());
+  });
+
+  it("show successful result", async () => {
+    render(<UsersTable />, { wrapper: TestQueryClientWrapper });
+
+    await waitForElementToBeRemoved(() => screen.queryByText(/Loading.../));
+
+    const testID = /UsersTable/;
+    const successComponent = screen.getByTestId(testID);
+    expect(successComponent).toBeVisible();
   });
 });
-
-describe.only("api component testing this", () => {});

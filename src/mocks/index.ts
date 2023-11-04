@@ -5,7 +5,7 @@ export function mockAPIBaseJoinPath(path: string) {
   return new URL(path, env.NEXT_PUBLIC_API_URL).toString();
 }
 
-async function initMocks() {
+export async function initMocks() {
   if (typeof window !== "undefined") {
     const { worker } = await import("./browser");
     // example
@@ -26,5 +26,3 @@ async function initMocks() {
   // const { server } = await import('./server')
   // server.listen()
 }
-
-void initMocks();

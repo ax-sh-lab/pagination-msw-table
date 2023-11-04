@@ -8,8 +8,9 @@ export const API_ROUTE = {
 
 //  adapter: "http", needed for test fix
 export const apiClient = axios.create({
-  // adapter: "http",
+  adapter: "http",
   baseURL: " http://localhost:3000",
+  timeout: 8000,
   // baseURL: env.NEXT_PUBLIC_API_URL,
 });
 
