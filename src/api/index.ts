@@ -1,12 +1,16 @@
 import axios from "axios";
+import { env } from "../../env";
 
 export const API_ROUTE = {
-  PROFILE: "api/profile",
-  USERS: "api/users",
+  PROFILE: "/api/profile",
+  USERS: "/api/users",
 } as const;
 
+console.log(env.NEXT_PUBLIC_API_URL, 23232323);
+//  adapter: "http", needed for test fix
 export const apiClient = axios.create({
-  // baseURL: "http://localhost:8080",
+  adapter: "http",
+  baseURL: env.NEXT_PUBLIC_API_URL,
 });
 
 export function fetchProfile() {

@@ -13,6 +13,7 @@ const FetchUsersParamsSchema = z.object({
 });
 export type FetchUsersParams = z.infer<typeof FetchUsersParamsSchema>;
 export async function fetchUsers({ page = 1, perPage = 10 }: FetchUsersParams) {
+  console.log(8888899999);
   return apiClient
     .get(API_ROUTE.USERS, { params: { page, perPage } })
     .then((response) => response.data);

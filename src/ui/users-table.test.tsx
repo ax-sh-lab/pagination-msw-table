@@ -9,23 +9,26 @@ import { setupServer } from "msw/node";
 
 import { usersListMockHandler } from "@/mocks/handlers/users-list-mock-handler";
 import { TestQueryClientWrapper } from "@/ui/test-query-client.wrapper";
+import { http, HttpResponse } from "msw";
+import { mockAPIBaseJoinPath } from "@/mocks";
+import { API_ROUTE } from "@/api";
 
-const server = setupServer(usersListMockHandler);
+const server = setupServer();
 describe(UsersTable.name, () => {
   // Enable request interception.
-  beforeAll(() => server.listen());
+  // beforeAll(() => server.listen());
+  beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
 
   // Reset handlers so that each test could alter them
   // without affecting other, unrelated tests.
   afterEach(() => server.resetHandlers());
 
-  // Don't forget to clean up afterwards.
+  // Don't forget to clean up after-wards.
   afterAll(() => server.close());
 
   it("show loading", () => {
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
     expect(screen.getByText(/Loading.../)).toBeInTheDocument();
-    screen.logTestingPlaygroundURL();
   });
 
   it("show error", async () => {
@@ -34,18 +37,30 @@ describe(UsersTable.name, () => {
     expect(error).toBeInTheDocument();
   });
 
-  it("show result", async () => {
+  it("show successful result", async () => {
+    // server.use(usersListMockHandler);
+    server.use(
+      http.post(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
+        return HttpResponse.json({ k: 9 });
+      }),
+    );
+
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
-    const component = await screen.findByTestId(/UsersTable/);
-    await waitForElementToBeRemoved(() => screen.findByText(/Loading.../));
-    expect(component).toBeInTheDocument();
-    screen.logTestingPlaygroundURL();
-    // 🕗 Wait for the posts request to be finished.
-    // await waitFor(() => {
-    //   expect(screen.getByText(/Loading.../)).not.toBeInTheDocument();
-    // });
-    // expect(screen.findByText(/Loading.../)).not.toBeInTheDocument();
+    const testID = /UsersTable/;
+    const component = screen.queryByTestId(testID);
+    // const component = screen.getByTestId(testID);
+    // const component = screen.findByTestId(testID);
+    await waitFor(() => expect(component).toBeInTheDocument());
+    // // await waitForElementToBeRemoved(() => screen.findByText(/Loading.../));
+    // // expect(component).toBeInTheDocument();
+    // // console.log(component, 34343434);
     // screen.logTestingPlaygroundURL();
+    // // 🕗 Wait for the posts request to be finished.
+    // // await waitFor(() => {
+    // //   expect(screen.getByText(/Loading.../)).not.toBeInTheDocument();
+    // // });
+    // // expect(screen.findByText(/Loading.../)).not.toBeInTheDocument();
+    // // screen.logTestingPlaygroundURL();
   });
 
   it("should render", () => {

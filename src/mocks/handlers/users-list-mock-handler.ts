@@ -6,9 +6,10 @@ import { computeOffset } from "@/mocks/utils/compute-offset";
 import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 import { range } from "lodash";
 import { PaginationResponse } from "@/types";
+import { mockAPIBaseJoinPath } from "@/mocks";
 
 export const usersListMockHandler = http.get(
-  API_ROUTE.USERS,
+  mockAPIBaseJoinPath(API_ROUTE.USERS),
   async ({ params, request }) => {
     // NOTE this populates the user db with 100 users
     range(10).map(() => db.user.create());

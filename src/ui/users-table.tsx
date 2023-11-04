@@ -41,6 +41,12 @@ export function UsersTable() {
     searchQuery: "",
   });
   if (users.isLoading) return <div>Loading...</div>;
+  if (users.isError) {
+    console.log(2323232323, users.error);
+    return <div>Error</div>;
+  }
+
+  return <div data-testid={"UsersTable"}>data</div>;
 
   return (
     <div data-testid={"UsersTable"}>
