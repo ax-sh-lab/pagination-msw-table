@@ -7,7 +7,7 @@ import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 import { range } from "lodash";
 import { PaginationResponse } from "@/types";
 
-export const usersListMock = http.get(
+export const usersListMockHandler = http.get(
   API_ROUTE.USERS,
   async ({ params, request }) => {
     // NOTE this populates the user db with 100 users
