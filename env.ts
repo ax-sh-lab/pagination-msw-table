@@ -9,15 +9,11 @@ export const env = createEnv({
   },
   client: {
     // https://zod.dev/?id=coercion-for-primitives
-    NEXT_PUBLIC_API_URL: z
-      .string()
-      .url()
-      .min(1)
-      .default("https://api.example.com"),
+    NEXT_PUBLIC_API_URL: z.string().url().min(1),
     NEXT_PUBLIC_API_MOCKING: z.coerce.boolean().default(false),
   },
   runtimeEnv: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_API_URL,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_API_MOCKING: process.env.NEXT_PUBLIC_API_MOCKING,
   },
   onValidationError: (error: ZodError) => {
