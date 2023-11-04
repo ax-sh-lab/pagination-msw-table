@@ -15,7 +15,7 @@ export async function fetchUsers({ page = 1, perPage = 10 }: FetchUsersParams) {
 
 export function useUsersQuery({ page, perPage }: FetchUsersParams) {
   return useQuery({
-    queryFn: () => fetchUsers({ page, perPage }),
     queryKey: [API_ROUTE.USERS, page, perPage],
+    queryFn: () => fetchUsers({ page, perPage }),
   });
 }
