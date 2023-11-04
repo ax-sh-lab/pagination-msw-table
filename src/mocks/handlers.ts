@@ -13,8 +13,8 @@ const profileMock = http.get(API_ROUTE.PROFILE, async () => {
   return new Response("User");
 });
 
-const usersListMock = http.get(API_ROUTE.USERS, async (r) => {
-  console.log(r, 555);
+const usersListMock = http.get(API_ROUTE.USERS, async ({ params }) => {
+  console.log(params, 555);
 
   // const pageParam = req.url.searchParams.get('page') || 1;
   // const perPageParam = req.url.searchParams.get('per_page') || 10;

@@ -12,3 +12,6 @@ const client = axios.create({
 export function fetchProfile() {
   return client.get(API_ROUTE.PROFILE).then((response) => response.data);
 }
+export function fetchUsers() {
+  return client.get(API_ROUTE.USERS).then((response) => response.data);
+}
