@@ -3,10 +3,11 @@ import type { AppProps } from "next/app";
 import { type PropsWithChildren } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { env } from "../../env";
 
 // NOTE enable msw mocking
 // TODO find a better way to initialize mocking
-require("../mocks");
+if (env.NEXT_PUBLIC_API_MOCKING) require("../mocks");
 
 // Create a client
 const queryClient = new QueryClient();
