@@ -1,5 +1,9 @@
 import { API_ROUTE, apiClient } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  UndefinedInitialDataOptions,
+  useQuery,
+} from "@tanstack/react-query";
 import { z } from "zod";
 
 const FetchUsersParamsSchema = z.object({
@@ -13,9 +17,14 @@ export async function fetchUsers({ page = 1, perPage = 10 }: FetchUsersParams) {
     .then((response) => response.data);
 }
 
-export function useUsersQuery({ page, perPage }: FetchUsersParams) {
+export function useUsersQuery({
+  page,
+  perPage,
+  placeholderData,
+}: FetchUsersParams & Pick<UndefinedInitialDataOptions, "placeholderData">) {
   return useQuery({
     queryKey: [API_ROUTE.USERS, page, perPage],
     queryFn: () => fetchUsers({ page, perPage }),
+    placeholderData: keepPreviousData,
   });
 }
