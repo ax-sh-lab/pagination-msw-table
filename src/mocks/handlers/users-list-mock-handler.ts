@@ -26,13 +26,16 @@ export const usersListMockHandler = http.get(
 
     const total_records = db.user.count();
 
-    return HttpResponse.json<PaginationResponse>({
-      records: list,
-      pagination: {
-        page,
-        total_records,
-        total_pages: computeTotalPages(total_records, perPage),
+    return HttpResponse.json<PaginationResponse>(
+      {
+        records: list,
+        pagination: {
+          page,
+          total_records,
+          total_pages: computeTotalPages(total_records, perPage),
+        },
       },
-    });
+      // { status: 500 },
+    );
   },
 );

@@ -28,9 +28,9 @@ export function useUsersPaginationQuery({
   const pageCount = useMemo(() => {
     const total_pages = query.data?.pagination.total_pages;
 
-    return computeTotalPages(total_pages, pagination.pageSize);
+    return computeTotalPages(Number(total_pages), pagination.pageSize);
   }, [query.data?.pagination, pagination.pageSize]);
-  console.log(pageCount, 888999);
+  console.log(query.status, query.isLoading, 888999);
   return {
     ...query,
     pagination: _pagination,
