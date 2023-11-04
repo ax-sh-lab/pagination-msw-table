@@ -1,4 +1,4 @@
-import { delay, http, HttpHandler } from "msw";
+import { delay, http, HttpHandler, HttpResponse } from "msw";
 import { API_ROUTE } from "@/api";
 import { mockAPIBaseJoinPath } from "@/mocks/index";
 
@@ -13,12 +13,13 @@ const profileMock = http.get(API_ROUTE.PROFILE, async () => {
   return new Response("User");
 });
 
-const usersListMock = http.get(API_ROUTE.USERS, async ({ params }) => {
-  console.log(params, 555);
+const usersListMock = http.get(API_ROUTE.USERS, async ({ params, request }) => {
+  const url = new URL(request.url);
 
-  // const pageParam = req.url.searchParams.get('page') || 1;
-  // const perPageParam = req.url.searchParams.get('per_page') || 10;
-  // const sortBy = req.url.searchParams.get('sortBy');
-  //
+  const pageParam = Number(url.searchParams.get("page") || 1);
+  const perPageParam = Number(url.searchParams.get("perPage") || 10);
+  // const sortByParam = url.searchParams.get("sortBy");
+  console.log(url, pageParam, perPageParam);
+  return HttpResponse.json({ pageParam });
 });
 export const handlers = [profileMock, usersListMock] satisfies HttpHandler[];
