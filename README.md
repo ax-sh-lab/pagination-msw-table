@@ -1,43 +1,40 @@
-# Mock Service Worker Example
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-[Mock Service Worker](https://github.com/mswjs/msw) is an API mocking library for browser and Node. It provides seamless mocking by interception of actual requests on the network level using Service Worker API. This makes your application unaware of any mocking being at place.
+## Getting Started
 
-In this example we integrate Mock Service Worker with Next by following the next steps:
-
-1. Define a set of [request handlers](./mocks/handlers.ts) shared between client and server.
-1. Setup a [Service Worker instance](./mocks/browser.ts) that would intercept all runtime client-side requests via `setupWorker` function.
-1. Setup a ["server" instance](./mocks/server.ts) to intercept any server/build time requests (e.g. the one happening in `getServerSideProps`) via `setupServer` function.
-
-Mocking is enabled using the `NEXT_PUBLIC_API_MOCKING` environment variable. By default, mocking is enabled for both development and production. This allows you to have working preview deployments before implementing an actual API. To disable MSW for a specific environment, change the environment variable value in the file corresponding to the environment from `enabled` to `disabled`.
-
-The service worker file will automatically be generated in `public/mockServiceWorker.js` after installing `node_modules`. If the file is not generated, you can explicitly generate it with the following command:
+First, run the development server:
 
 ```bash
-npx msw init public/
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-More information on this setup step can be found in the MSW documentation [here](https://mswjs.io/docs/getting-started/integrate/browser#setup).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Deploy your own
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-msw&project-name=with-msw&repository-name=with-msw)
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## How to use
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Learn More
 
-```bash
-npx create-next-app --example with-msw with-msw-app
-```
+To learn more about Next.js, take a look at the following resources:
 
-```bash
-yarn create next-app --example with-msw with-msw-app
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-```bash
-pnpm create next-app --example with-msw with-msw-app
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
