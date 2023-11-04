@@ -17,6 +17,9 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 # Stacks
-1. msw
-1. react-query
-1. eslint
+1. msw 2
+2. react-query 5
+3. eslint
+4. tailwind
+   - tailwind-typography
+   - tailwind-variants

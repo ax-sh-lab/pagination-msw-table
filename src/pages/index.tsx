@@ -23,7 +23,6 @@ export default function Home() {
         "items-center justify-between",
         `min-h-screen`,
         "container mx-auto",
-
         inter.className,
       )}
     >
