@@ -1,7 +1,7 @@
 // /api/posts?offset=0&limit=10
 import { http, HttpResponse } from "msw";
 import { API_ROUTE } from "@/api";
-import { db } from "@/mocks/mock-schema/db";
+import { db } from "@/mocks/models/db";
 import { computeOffset } from "@/mocks/utils/compute-offset";
 import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 import { range } from "lodash";

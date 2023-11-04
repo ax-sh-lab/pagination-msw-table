@@ -1,8 +1,8 @@
 import { delay, http, HttpHandler } from "msw";
 import { API_ROUTE } from "@/api";
-import { db } from "@/mocks/mock-schema/db";
+import { db } from "@/mocks/models/db";
 import { range } from "lodash";
-import { usersListMockHandler } from "@/mocks/mock-schema/users-list-mock-handler";
+import { usersListMockHandler } from "@/mocks/handlers/users-list-mock-handler";
 
 // Intercept the "GET /resource" request.
 const profileMock = http.get(API_ROUTE.PROFILE, async () => {
