@@ -4,6 +4,10 @@ import { type PropsWithChildren } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+// NOTE enable msw mocking
+// TODO find a better way to initialize mocking
+require("../mocks");
+
 // Create a client
 const queryClient = new QueryClient();
 function Providers({ children }: PropsWithChildren) {
