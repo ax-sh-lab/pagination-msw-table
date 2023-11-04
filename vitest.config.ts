@@ -4,6 +4,11 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+/* To load environment variables in tests */
+const { loadEnvConfig } = require("@next/env");
+loadEnvConfig(process.env.PWD);
+console.log(343434, process.env.PWD);
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
