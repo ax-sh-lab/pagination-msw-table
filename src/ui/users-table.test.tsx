@@ -13,7 +13,7 @@ import { http, HttpResponse } from "msw";
 import { mockAPIBaseJoinPath } from "@/mocks";
 import { API_ROUTE } from "@/api";
 
-const server = setupServer();
+const server = setupServer(usersListMockHandler);
 describe(UsersTable.name, () => {
   // Enable request interception.
   beforeAll(() => server.listen());
@@ -37,10 +37,24 @@ describe(UsersTable.name, () => {
     expect(error).toBeInTheDocument();
   });
 
+  it("should render", () => {
+    render(<div className={"test"}>...</div>);
+    expect(screen.getByText("...")).not.toHaveClass("tesg");
+    screen.logTestingPlaygroundURL();
+  });
+});
+
+describe("api component testing", () => {
+  // beforeAll(() => server.listen());
+  beforeAll(() => server.listen({ onUnhandledRequest: "warn" }));
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
+
   it("show successful result", async () => {
     // server.use(usersListMockHandler);
     server.use(
       http.post(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
+        console.log(999999999);
         return HttpResponse.json({ k: 9 });
       }),
     );
@@ -53,10 +67,11 @@ describe(UsersTable.name, () => {
 
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
     const testID = /UsersTable/;
-    const component = screen.queryByTestId(testID);
-    // const component = screen.getByTestId(testID);
-    // const component = await screen.findByTestId(testID);
+    // const component = screen.queryByTestId(testID);
+    // // const component = screen.getByTestId(testID);
+    const component = await screen.findByTestId(testID);
     await waitFor(() => expect(component).toBeInTheDocument());
+
     // // await waitForElementToBeRemoved(() => screen.findByText(/Loading.../));
     // // expect(component).toBeInTheDocument();
     // // console.log(component, 34343434);
@@ -67,11 +82,5 @@ describe(UsersTable.name, () => {
     // // });
     // // expect(screen.findByText(/Loading.../)).not.toBeInTheDocument();
     // // screen.logTestingPlaygroundURL();
-  });
-
-  it("should render", () => {
-    render(<div className={"test"}>...</div>);
-    expect(screen.getByText("...")).not.toHaveClass("tesg");
-    screen.logTestingPlaygroundURL();
   });
 });
