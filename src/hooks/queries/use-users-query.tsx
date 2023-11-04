@@ -5,6 +5,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { z } from "zod";
+import { PaginationResponse } from "@/types";
 
 const FetchUsersParamsSchema = z.object({
   page: z.number().default(1).optional(),
@@ -22,9 +23,10 @@ export function useUsersQuery({
   perPage,
   placeholderData,
 }: FetchUsersParams & Pick<UndefinedInitialDataOptions, "placeholderData">) {
-  return useQuery({
+  return useQuery<PaginationResponse<any>>({
     queryKey: [API_ROUTE.USERS, page, perPage],
     queryFn: () => fetchUsers({ page, perPage }),
     placeholderData: keepPreviousData,
+    initialData: {} as PaginationResponse,
   });
 }
