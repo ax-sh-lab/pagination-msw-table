@@ -48,19 +48,19 @@ export function UsersTable() {
 
   return <div data-testid={"UsersTable"}>data</div>;
 
-  return (
-    <div data-testid={"UsersTable"}>
-      <DataTable
-        columns={columns}
-        pageCount={0}
-        data={users.data ?? []}
-        pagination={users.pagination}
-        setPagination={users.setPagination}
-        setSorting={users.setSorting}
-        sorting={users.sorting}
-      />
-
-      {/*<JSONViewer data={users.data} />*/}
-    </div>
-  );
+  // return (
+  //   <div data-testid={"UsersTable"}>
+  //     <DataTable
+  //       columns={columns}
+  //       pageCount={0}
+  //       data={users.data ?? []}
+  //       pagination={users.pagination}
+  //       setPagination={users.setPagination}
+  //       setSorting={users.setSorting}
+  //       sorting={users.sorting}
+  //     />
+  //
+  //     {/*<JSONViewer data={users.data} />*/}
+  //   </div>
+  // );
 }

@@ -16,8 +16,8 @@ import { API_ROUTE } from "@/api";
 const server = setupServer();
 describe(UsersTable.name, () => {
   // Enable request interception.
-  // beforeAll(() => server.listen());
-  beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
+  beforeAll(() => server.listen());
+  // beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
 
   // Reset handlers so that each test could alter them
   // without affecting other, unrelated tests.
@@ -44,12 +44,18 @@ describe(UsersTable.name, () => {
         return HttpResponse.json({ k: 9 });
       }),
     );
+    console.log(11111, mockAPIBaseJoinPath(API_ROUTE.USERS));
+    // server.use(
+    //   http.post(, () => {
+    //     return HttpResponse.json({ k: 9 });
+    //   }),
+    // );
 
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
     const testID = /UsersTable/;
     const component = screen.queryByTestId(testID);
     // const component = screen.getByTestId(testID);
-    // const component = screen.findByTestId(testID);
+    // const component = await screen.findByTestId(testID);
     await waitFor(() => expect(component).toBeInTheDocument());
     // // await waitForElementToBeRemoved(() => screen.findByText(/Loading.../));
     // // expect(component).toBeInTheDocument();

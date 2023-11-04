@@ -6,11 +6,11 @@ export const API_ROUTE = {
   USERS: "/api/users",
 } as const;
 
-console.log(env.NEXT_PUBLIC_API_URL, 23232323);
 //  adapter: "http", needed for test fix
 export const apiClient = axios.create({
   adapter: "http",
-  baseURL: env.NEXT_PUBLIC_API_URL,
+  baseURL: " http://localhost:3000",
+  // baseURL: env.NEXT_PUBLIC_API_URL,
 });
 
 export function fetchProfile() {
