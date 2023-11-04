@@ -15,8 +15,6 @@ export default function Home() {
     return <span>Error: {error.message}</span>;
   }
 
-  console.log(data, "<<<<<");
-
   return (
     <main
       className={clsx(
@@ -24,7 +22,7 @@ export default function Home() {
         inter.className,
       )}
     >
-      Hello World
+      <pre>{data}</pre>
     </main>
   );
 }

@@ -1,3 +1,8 @@
+// TODO add type safety on path
+export function mockAPIBaseJoinPath(path: string) {
+  return new URL(path, "env.API_URL").toString();
+}
+
 async function initMocks() {
   if (typeof window !== "undefined") {
     const { worker } = await import("./browser");
