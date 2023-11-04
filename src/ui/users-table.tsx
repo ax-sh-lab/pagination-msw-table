@@ -2,7 +2,7 @@ import { DataTable } from "@/ui/data-table";
 import { JSONViewer } from "@/ui/JSONViewer";
 import { useUsersPaginationQuery } from "@/hooks/queries/use-users-pagination-query";
 import { ColumnDef } from "@tanstack/react-table";
-import { useMemo } from "react";
+import { ErrorWrapper, LoadingWrapper } from "@/ui/state-wrapper";
 
 export type User = {
   id: string;
@@ -40,27 +40,23 @@ export function UsersTable() {
     sorting: [{ desc: true, id: "" }],
     searchQuery: "",
   });
-  if (users.isLoading) return <div>Loading...</div>;
-  if (users.isError) {
-    console.log(2323232323, users.error);
-    return <div>Error</div>;
-  }
+  if (users.isLoading) return <LoadingWrapper>Loading...</LoadingWrapper>;
+  if (users.isError)
+    return <ErrorWrapper>Error {users.error.message}</ErrorWrapper>;
 
-  return <div data-testid={"UsersTable"}>data</div>;
+  return (
+    <div data-testid={"UsersTable"}>
+      <DataTable
+        columns={columns}
+        pageCount={0}
+        data={users.data ?? []}
+        pagination={users.pagination}
+        setPagination={users.setPagination}
+        setSorting={users.setSorting}
+        sorting={users.sorting}
+      />
 
-  // return (
-  //   <div data-testid={"UsersTable"}>
-  //     <DataTable
-  //       columns={columns}
-  //       pageCount={0}
-  //       data={users.data ?? []}
-  //       pagination={users.pagination}
-  //       setPagination={users.setPagination}
-  //       setSorting={users.setSorting}
-  //       sorting={users.sorting}
-  //     />
-  //
-  //     {/*<JSONViewer data={users.data} />*/}
-  //   </div>
-  // );
+      {/*<JSONViewer data={users.data} />*/}
+    </div>
+  );
 }

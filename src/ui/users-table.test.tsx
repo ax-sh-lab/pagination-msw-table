@@ -2,18 +2,17 @@ import { UsersTable } from "@/ui/users-table";
 import {
   render,
   screen,
-  waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { setupServer } from "msw/node";
 
 import { usersListMockHandler } from "@/mocks/handlers/users-list-mock-handler";
 import { TestQueryClientWrapper } from "@/ui/test-query-client.wrapper";
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse, delay } from "msw";
 import { mockAPIBaseJoinPath } from "@/mocks";
 import { API_ROUTE } from "@/api";
 
-const server = setupServer(usersListMockHandler);
+const server = setupServer();
 describe(UsersTable.name, () => {
   // Enable request interception.
   beforeAll(() => server.listen());
@@ -49,21 +48,35 @@ describe("api component testing", () => {
   beforeAll(() => server.listen({ onUnhandledRequest: "warn" }));
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
-  it("show successful result", async () => {
-    // server.use(usersListMockHandler);
-    // server.use(
-    //   http.post(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
-    //     console.log(999999999);
-    //     return HttpResponse.json({ k: 9 });
-    //   }),
-    // );
+  it("show loading result", async () => {
+    server.use(
+      http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), async () => {
+        await delay("infinite");
+        return HttpResponse.json("error", { status: 500 });
+      }),
+    );
 
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
 
-    // await waitFor(() => expect(component).toBeInTheDocument());
+    const successComponent = screen.getByTestId(/LoadingWrapper/);
+    expect(successComponent).toBeVisible();
+  });
+  it("show error result", async () => {
+    server.use(
+      http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
+        return HttpResponse.json("error", { status: 500 });
+      }),
+    );
+
+    render(<UsersTable />, { wrapper: TestQueryClientWrapper });
+    await waitForElementToBeRemoved(() => screen.queryByText(/Loading.../));
+
+    const successComponent = screen.getByTestId(/ErrorWrapper/);
+    expect(successComponent).toBeVisible();
   });
 
   it("show successful result", async () => {
+    server.use(usersListMockHandler);
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
 
     await waitForElementToBeRemoved(() => screen.queryByText(/Loading.../));

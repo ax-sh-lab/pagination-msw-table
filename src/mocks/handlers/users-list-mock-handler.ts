@@ -10,7 +10,8 @@ import { mockAPIBaseJoinPath } from "@/mocks";
 
 export const usersListMockHandler = http.get(
   mockAPIBaseJoinPath(API_ROUTE.USERS),
-  async ({ params, request }) => {
+  async ({ request }) => {
+    console.log(32323);
     // NOTE this populates the user db with 100 users
     range(10).map(() => db.user.create());
 
