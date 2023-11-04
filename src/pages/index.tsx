@@ -3,6 +3,9 @@ import clsx from "clsx";
 import { useQuery } from "@tanstack/react-query";
 import { API_ROUTE, fetchProfile } from "@/api";
 import Loader from "@/ui/loader";
+import { useUsersQuery } from "@/hooks/queries/use-users-query";
+import { JSONViewer } from "@/ui/JSONViewer";
+
 const inter = Inter({ subsets: ["latin"] });
 
 function useProfileQuery() {
@@ -11,7 +14,9 @@ function useProfileQuery() {
 
 export default function Home() {
   const { data, isLoading, isError, error } = useProfileQuery();
-  if (isLoading) return <Loader />;
+  const users = useUsersQuery({});
+
+  if (isLoading || users.isLoading) return <Loader />;
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
@@ -26,7 +31,7 @@ export default function Home() {
         inter.className,
       )}
     >
-      <pre>{data}</pre>
+      <JSONViewer data={users.data} />
     </main>
   );
 }
