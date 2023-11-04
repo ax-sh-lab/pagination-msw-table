@@ -2,17 +2,15 @@
 import { http, HttpResponse } from "msw";
 import { API_ROUTE } from "@/api";
 import { db } from "@/mocks/mock-schema/db";
-import { computeCursor } from "@/mocks/utils/computeCursor";
-import { computePageCount } from "@/mocks/utils/computePageCount";
+import { computeOffset } from "@/mocks/utils/compute-offset";
+import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 import { range } from "lodash";
 
-function initPopulateData() {
-  return range(10).map(() => db.user.create());
-}
 export const usersListMock = http.get(
   API_ROUTE.USERS,
   async ({ params, request }) => {
-    initPopulateData();
+    // NOTE this populates the user db with 100 users
+    range(10).map(() => db.user.create());
 
     const url = new URL(request.url);
 
@@ -22,14 +20,18 @@ export const usersListMock = http.get(
 
     const list = db.user.findMany({
       take: perPage,
-      skip: computeCursor(perPage, page),
+      skip: computeOffset(perPage, page),
     });
+
+    const total_records = db.user.count();
 
     return HttpResponse.json({
       records: list,
-      page,
-      total_pages: computePageCount(perPage),
-      total_records: db.user.count(),
+      pagination: {
+        page,
+        total_records,
+        total_pages: computeTotalPages(total_records, perPage),
+      },
     });
   },
 );
