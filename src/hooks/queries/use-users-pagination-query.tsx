@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { PaginationState, SortingState } from "@tanstack/react-table";
 import { useUsersQuery } from "@/hooks/queries/use-users-query";
+import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 
 type UsersPaginationQueryProps = {
   searchQuery: string;
@@ -18,6 +19,18 @@ export function useUsersPaginationQuery({
     page: pagination.pageIndex,
     perPage: pagination.pageSize,
   });
+
+  // const pageCount = useMemo(
+  //     () => (data.totalRecords ? Math.ceil(data.totalRecords / pagination.pageSize) : 0),
+  //     [data.totalRecords, pagination.pageSize]
+  // );
+
+  const pageCount = useMemo(() => {
+    const total_pages = query.data?.pagination.total_pages;
+
+    return computeTotalPages(total_pages, pagination.pageSize);
+  }, [query.data?.pagination, pagination.pageSize]);
+  console.log(pageCount, 888999);
   return {
     ...query,
     pagination: _pagination,

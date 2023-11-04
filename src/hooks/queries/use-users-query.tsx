@@ -27,6 +27,5 @@ export function useUsersQuery({
     queryKey: [API_ROUTE.USERS, page, perPage],
     queryFn: () => fetchUsers({ page, perPage }),
     placeholderData: keepPreviousData,
-    initialData: {} as PaginationResponse,
   });
 }

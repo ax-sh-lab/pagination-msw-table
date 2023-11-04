@@ -26,11 +26,14 @@ type DataTableProps<TColumn extends object> = {
   setPagination: (pagination: Updater<PaginationState>) => void;
   sorting: SortingState;
   setSorting: Dispatch<SetStateAction<SortingState>>;
+
+  pageCount: number;
 };
 
 export function DataTable<TColumn extends object>({
   columns,
   data = [],
+  pageCount,
   sorting,
   setSorting,
 
@@ -46,7 +49,7 @@ export function DataTable<TColumn extends object>({
     // onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-
+    pageCount,
     state: {
       pagination,
       sorting,

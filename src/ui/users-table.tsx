@@ -2,6 +2,7 @@ import { DataTable } from "@/ui/data-table";
 import { JSONViewer } from "@/ui/JSONViewer";
 import { useUsersPaginationQuery } from "@/hooks/queries/use-users-pagination-query";
 import { ColumnDef } from "@tanstack/react-table";
+import { useMemo } from "react";
 
 export type User = {
   id: string;
@@ -40,17 +41,13 @@ export function UsersTable() {
     searchQuery: "",
   });
   if (users.isLoading) return <div>Loading...</div>;
-  console.log(users.data?.pagination.total_pages, 22);
-  // const pageCount = useMemo(
-  //     () => (data.totalRecords ? Math.ceil(data.totalRecords / pagination.pageSize) : 0),
-  //     [data.totalRecords, pagination.pageSize]
-  // );
 
   return (
     <div>
       <DataTable
         columns={columns}
-        data={users.data}
+        pageCount={0}
+        data={users.data ?? []}
         pagination={users.pagination}
         setPagination={users.setPagination}
         setSorting={users.setSorting}
