@@ -5,6 +5,7 @@ import { db } from "@/mocks/mock-schema/db";
 import { computeOffset } from "@/mocks/utils/compute-offset";
 import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 import { range } from "lodash";
+import { PaginationResponse } from "@/types";
 
 export const usersListMock = http.get(
   API_ROUTE.USERS,
@@ -25,7 +26,7 @@ export const usersListMock = http.get(
 
     const total_records = db.user.count();
 
-    return HttpResponse.json({
+    return HttpResponse.json<PaginationResponse>({
       records: list,
       pagination: {
         page,
