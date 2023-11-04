@@ -43,7 +43,7 @@ export function UsersTable() {
   if (users.isLoading) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div data-testid={"UsersTable"}>
       <DataTable
         columns={columns}
         pageCount={0}
@@ -54,7 +54,7 @@ export function UsersTable() {
         sorting={users.sorting}
       />
 
-      <JSONViewer data={users.data} />
+      {/*<JSONViewer data={users.data} />*/}
     </div>
   );
 }
