@@ -57,15 +57,13 @@ export function UsersTable() {
     <div data-testid={"UsersTable"}>
       <DataTable
         columns={columns}
-        pageCount={0}
+        pageCount={100}
         data={users.data ?? []}
         pagination={users.pagination}
         setPagination={users.setPagination}
         setSorting={users.setSorting}
         sorting={users.sorting}
       />
-
-      {/*<JSONViewer data={users.data} />*/}
     </div>
   );
 }

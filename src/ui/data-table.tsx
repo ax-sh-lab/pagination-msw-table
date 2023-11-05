@@ -18,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 
 type DataTableProps<TColumn extends object> = {
   columns: ColumnDef<TColumn>[];
@@ -42,7 +43,9 @@ export function DataTable<TColumn extends object>({
 }: DataTableProps<TColumn>) {
   const table = useReactTable({
     manualPagination: true,
+
     // debugTable: sta !== pr,
+    debugTable: true,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     // onColumnVisibilityChange: setColumnVisibility,
@@ -60,8 +63,8 @@ export function DataTable<TColumn extends object>({
   });
 
   return (
-    <div className="rounded-md border">
-      <Table>
+    <div className="rounded-md border container ">
+      <Table className={"DataTable"}>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -104,22 +107,23 @@ export function DataTable<TColumn extends object>({
         </TableBody>
       </Table>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <button
-          // variant="outline"
-          // size="sm"
+        <span>Page: {table.getState().pagination.pageIndex + 1}</span>
+        <Button
+          variant="outline"
+          size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
           Previous
-        </button>
-        <button
-          // variant="outline"
-          // size="sm"
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );
