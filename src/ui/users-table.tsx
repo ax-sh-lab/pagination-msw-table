@@ -1,8 +1,9 @@
 import { DataTable } from "@/ui/data-table";
 import { JSONViewer } from "@/ui/JSONViewer";
 import { useUsersPaginationQuery } from "@/hooks/queries/use-users-pagination-query";
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, PaginationState } from "@tanstack/react-table";
 import { ErrorWrapper, LoadingWrapper } from "@/ui/state-wrapper";
+import { useEffect, useState } from "react";
 
 export type User = {
   id: string;
@@ -31,15 +32,25 @@ export const columns: ColumnDef<User>[] = [
     header: "Last Name",
   },
 ];
+
+export const DEFAULT_PAGINATION_STATE: PaginationState = {
+  pageIndex: 1,
+  pageSize: 10,
+} as const;
+
 export function UsersTable() {
+  const [pagination, setPagination] = useState(DEFAULT_PAGINATION_STATE);
   const users = useUsersPaginationQuery({
-    pagination: {
-      pageIndex: 1,
-      pageSize: 10,
-    },
+    pagination,
     sorting: [{ desc: true, id: "" }],
     searchQuery: "",
   });
+  /* Update component pagination when query pagination changes */
+  useEffect(
+    () => setPagination(users.pagination),
+    [setPagination, users.pagination],
+  );
+
   if (users.isLoading) return <LoadingWrapper>Loading...</LoadingWrapper>;
   if (users.isError)
     return (
