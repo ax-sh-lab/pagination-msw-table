@@ -1,5 +1,5 @@
 const { defineConfig } = require("eslint-define-config");
-const prettierConfig = require("eslint-config-prettier");
+// const prettierConfig = require("eslint-config-prettier");
 
 module.exports = defineConfig({
   extends: [
