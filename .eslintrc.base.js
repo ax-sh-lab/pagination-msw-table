@@ -3,6 +3,7 @@ const { defineConfig } = require("eslint-define-config");
 
 module.exports = defineConfig({
   extends: [
+    "plugin:@typescript-eslint/recommended",
     "./.eslintrc.prettier.js",
     "plugin:import/recommended",
     // alternatively, 'recommended' is the combination of these two rule sets:
@@ -11,6 +12,7 @@ module.exports = defineConfig({
   ],
 
   plugins: [
+    "@typescript-eslint",
     "@tanstack/query",
     "simple-import-sort",
     "testing-library",
