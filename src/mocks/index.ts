@@ -2,7 +2,6 @@ import { env } from "../../env";
 
 // TODO add type safety on path
 export function mockAPIBaseJoinPath(path: string) {
-  console.log(env.NEXT_PUBLIC_API_URL, 232);
   return new URL(path, env.NEXT_PUBLIC_API_URL).toString();
 }
 
