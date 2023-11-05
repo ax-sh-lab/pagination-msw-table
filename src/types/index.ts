@@ -1,4 +1,4 @@
-import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
+// import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 
 export type PaginationResponse<T = any> = {
   records: T[];

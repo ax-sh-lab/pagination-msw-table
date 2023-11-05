@@ -1,10 +1,9 @@
-import { DataTable } from "@/ui/data-table";
-import { JSONViewer } from "@/ui/JSONViewer";
-import { useUsersPaginationQuery } from "@/hooks/queries/use-users-pagination-query";
 import { ColumnDef, PaginationState } from "@tanstack/react-table";
-import { ErrorWrapper, LoadingWrapper } from "@/ui/state-wrapper";
 import { useEffect, useMemo, useState } from "react";
-import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
+
+import { useUsersPaginationQuery } from "@/hooks/queries/use-users-pagination-query";
+import { DataTable } from "@/ui/data-table";
+import { ErrorWrapper, LoadingWrapper } from "@/ui/state-wrapper";
 
 export type User = {
   id: string;

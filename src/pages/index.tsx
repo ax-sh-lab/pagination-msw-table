@@ -1,10 +1,11 @@
-import { Inter } from "next/font/google";
-import clsx from "clsx";
 import { useQuery } from "@tanstack/react-query";
+import clsx from "clsx";
+import { Inter } from "next/font/google";
+
 import { API_ROUTE, fetchProfile } from "@/api";
+import { JSONViewer } from "@/ui/JSONViewer";
 import Loader from "@/ui/loader";
 import { UsersTable } from "@/ui/users-table";
-import { JSONViewer } from "@/ui/JSONViewer";
 
 const inter = Inter({ subsets: ["latin"] });
 
