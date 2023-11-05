@@ -47,6 +47,7 @@ export function UsersTable() {
         Error:<p>{users.error.message}</p>
       </ErrorWrapper>
     );
+  return <div data-testid={"UsersTable"}></div>;
 
   return (
     <div data-testid={"UsersTable"}>

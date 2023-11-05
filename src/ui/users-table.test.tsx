@@ -2,6 +2,7 @@ import { UsersTable } from "@/ui/users-table";
 import {
   render,
   screen,
+  waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { setupServer } from "msw/node";
@@ -77,13 +78,23 @@ describe("api component testing", () => {
 
   it("show successful result", async () => {
     server.use(
-      http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
-        console.log(2323);
-        return HttpResponse.json({ k: 9 });
+      http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), async () => {
+        await delay();
+        return HttpResponse.json({ j: 9 });
       }),
     );
+    // server.use(
+    //   http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
+    //     console.log(2323);
+    //     return HttpResponse.json({ k: 9 });
+    //   }),
+    // );
     // server.use(usersListMockHandler);
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
+
+    // await waitFor(() => {
+    //   expect(screen.queryByText(/Loading.../)).not.toBeInTheDocument();
+    // });
 
     await waitForElementToBeRemoved(() => screen.queryByText(/Loading.../));
 
