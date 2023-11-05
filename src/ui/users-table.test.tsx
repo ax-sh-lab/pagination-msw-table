@@ -42,9 +42,7 @@ describe(UsersTable.name, () => {
     expect(screen.getByText("...")).not.toHaveClass("tesg");
     screen.logTestingPlaygroundURL();
   });
-});
 
-describe("api component testing", () => {
   beforeAll(() => server.listen());
   // beforeAll(() => server.listen({ onUnhandledRequest: "warn" }));
   afterEach(() => server.resetHandlers());
