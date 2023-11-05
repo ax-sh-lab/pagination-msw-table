@@ -5,7 +5,8 @@ export function mockAPIBaseJoinPath(path: string) {
   return new URL(path, env.NEXT_PUBLIC_API_URL).toString();
 }
 
-async function initMocks() {
+export async function initMocks() {
+  console.log("init mocks");
   if (typeof window !== "undefined") {
     const { worker } = await import("./browser");
     // example
@@ -18,13 +19,12 @@ async function initMocks() {
     //   // Otherwise, print an unhandled request warning.
     //   print.warning();
     // }
+    // return await worker.start({
+    //   onUnhandledRequest: "bypass",
+    // });
     // https://mswjs.io/docs/api/setup-worker/start#custom-onunhandledrequest-function
-    return await worker.start({
-      onUnhandledRequest: "bypass",
-    });
+    return await worker.start();
   }
   // const { server } = await import('./server')
   // server.listen()
 }
-
-void initMocks();

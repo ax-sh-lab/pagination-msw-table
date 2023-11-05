@@ -7,7 +7,9 @@ import { env } from "../../env";
 
 // NOTE enable msw mocking
 // TODO find a better way to initialize mocking
-if (env.NEXT_PUBLIC_API_MOCKING) require("../mocks");
+if (env.NEXT_PUBLIC_API_MOCKING && typeof window !== "undefined") {
+  require("../mocks").initMocks();
+}
 
 // Create a client
 const queryClient = new QueryClient();
