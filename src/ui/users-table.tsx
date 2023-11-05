@@ -24,11 +24,11 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     accessorKey: "first_name",
-    header: "name",
+    header: "First Name",
   },
   {
-    accessorKey: "amount",
-    header: "Amount",
+    accessorKey: "last_name",
+    header: "Last Name",
   },
 ];
 export function UsersTable() {
