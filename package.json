@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint -f mo",
+    "lint": "next lint",
+    "lint:pretty": "pnpm lint -f mo",
     "test": "pnpm vitest",
     "coverage": "vitest run --coverage"
   },
