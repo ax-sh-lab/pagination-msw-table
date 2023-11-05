@@ -6,7 +6,7 @@ import {
 import { delay, http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 
-import { API_ROUTE } from "@/api";
+import { API_ROUTE } from "@/lib/api-client";
 import { mockAPIBaseJoinPath } from "@/mocks";
 import { usersListMockHandler } from "@/mocks/handlers/users-list-mock-handler";
 import { TestQueryClientWrapper } from "@/ui/test-query-client.wrapper";

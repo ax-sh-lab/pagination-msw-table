@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { z } from "zod";
 
-import { API_ROUTE, apiClient } from "@/api";
+import { API_ROUTE, apiClient } from "@/lib/api-client";
 import { PaginationResponse } from "@/types";
 
 const FetchUsersParamsSchema = z.object({

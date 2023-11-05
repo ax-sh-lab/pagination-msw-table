@@ -2,7 +2,7 @@
 import { range } from "lodash";
 import { http, HttpResponse } from "msw";
 
-import { API_ROUTE } from "@/api";
+import { API_ROUTE } from "@/lib/api-client";
 import { mockAPIBaseJoinPath } from "@/mocks";
 import { db } from "@/mocks/models/db";
 import { computeOffset } from "@/mocks/utils/compute-offset";

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { Inter } from "next/font/google";
 
-import { API_ROUTE, fetchProfile } from "@/api";
+import { API_ROUTE, fetchProfile } from "@/lib/api-client";
 import { JSONViewer } from "@/ui/JSONViewer";
 import Loader from "@/ui/loader";
 import { UsersTable } from "@/ui/users-table";
