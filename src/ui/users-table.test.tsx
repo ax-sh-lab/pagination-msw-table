@@ -89,6 +89,6 @@ describe("api component testing", () => {
     const testID = /UsersTable/;
     const successComponent = screen.getByTestId(testID);
     expect(successComponent).toBeVisible();
-    screen.debug(successComponent);
+    // screen.debug(successComponent);
   });
 });
