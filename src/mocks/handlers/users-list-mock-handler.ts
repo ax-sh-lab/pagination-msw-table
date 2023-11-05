@@ -9,7 +9,7 @@ import { PaginationResponse } from "@/types";
 import { mockAPIBaseJoinPath } from "@/mocks";
 
 type ListMockPathParams = any;
-type ListMockRequestBodyType = any;
+type ListMockRequestBodyType = {};
 type ListMockResponseBodyType = any;
 
 export const usersListMockHandler = http.get<
@@ -19,6 +19,7 @@ export const usersListMockHandler = http.get<
 >(mockAPIBaseJoinPath(API_ROUTE.USERS), async ({ request }) => {
   // NOTE this populates the user db with 100 users
   range(100).map(() => db.user.create());
+  // console.log(request.json());
 
   const url = new URL(request.url);
 
