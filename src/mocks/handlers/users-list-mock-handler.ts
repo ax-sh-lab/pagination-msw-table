@@ -19,7 +19,7 @@ export const usersListMockHandler = http.get<
 >(mockAPIBaseJoinPath(API_ROUTE.USERS), async ({ request }) => {
   // NOTE this populates the user db with 100 users
   range(100).map(() => db.user.create());
-  // console.log(request.json());
+  console.log(request.json());
 
   const url = new URL(request.url);
 

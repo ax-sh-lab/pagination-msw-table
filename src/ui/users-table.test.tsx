@@ -44,8 +44,8 @@ describe(UsersTable.name, () => {
 });
 
 describe("api component testing", () => {
-  // beforeAll(() => server.listen());
-  beforeAll(() => server.listen({ onUnhandledRequest: "warn" }));
+  beforeAll(() => server.listen());
+  // beforeAll(() => server.listen({ onUnhandledRequest: "warn" }));
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
   it("show loading result", async () => {
@@ -76,7 +76,13 @@ describe("api component testing", () => {
   });
 
   it("show successful result", async () => {
-    server.use(usersListMockHandler);
+    server.use(
+      http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
+        console.log(2323);
+        return HttpResponse.json({ k: 9 });
+      }),
+    );
+    // server.use(usersListMockHandler);
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
 
     await waitForElementToBeRemoved(() => screen.queryByText(/Loading.../));
