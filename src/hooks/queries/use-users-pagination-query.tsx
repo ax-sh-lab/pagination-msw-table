@@ -26,12 +26,16 @@ export function useUsersPaginationQuery({
   // );
 
   const pageCount = useMemo(() => {
-    const total_pages = query.data?.pagination.total_pages;
-    return computeTotalPages(Number(total_pages), pagination.pageSize);
-  }, [query.data?.pagination, pagination.pageSize]);
+    console.log("rendered");
+    return computeTotalPages(
+      Number(query.data?.pagination.total_records),
+      pagination.pageSize,
+    );
+  }, [query.data, pagination.pageSize]);
 
   return {
     ...query,
+    pageCount,
     pagination: _pagination,
     setPagination,
     sorting: _sorting,

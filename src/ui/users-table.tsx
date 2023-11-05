@@ -3,7 +3,8 @@ import { JSONViewer } from "@/ui/JSONViewer";
 import { useUsersPaginationQuery } from "@/hooks/queries/use-users-pagination-query";
 import { ColumnDef, PaginationState } from "@tanstack/react-table";
 import { ErrorWrapper, LoadingWrapper } from "@/ui/state-wrapper";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 
 export type User = {
   id: string;
@@ -63,12 +64,13 @@ export function UsersTable() {
   //     <JSONViewer data={users.data} />
   //   </div>
   // );
+  console.log(users.pageCount, "<<<<>>>");
 
   return (
     <div data-testid={"UsersTable"}>
       <DataTable
         columns={columns}
-        pageCount={100}
+        pageCount={users.pageCount}
         data={users.data ?? []}
         pagination={users.pagination}
         setPagination={users.setPagination}

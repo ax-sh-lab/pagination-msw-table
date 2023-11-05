@@ -14,13 +14,17 @@ type ListMockResponseBodyType = any;
 
 const url = mockAPIBaseJoinPath(API_ROUTE.USERS);
 
+// NOTE this populates the user db with 100 users
+range(1, 31).map((i) => {
+  console.log(i, "<<<<");
+  db.user.create();
+});
+
 export const usersListMockHandler = http.get<
   ListMockPathParams,
   ListMockRequestBodyType,
   ListMockResponseBodyType
 >(url, async ({ request }) => {
-  // NOTE this populates the user db with 100 users
-  range(100).map(() => db.user.create());
   // console.log(await request.json());
 
   const url = new URL(request.url);
