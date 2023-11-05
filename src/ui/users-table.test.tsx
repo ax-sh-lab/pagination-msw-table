@@ -77,19 +77,7 @@ describe("api component testing", () => {
   });
 
   it("show successful result", async () => {
-    server.use(
-      http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), async () => {
-        await delay();
-        return HttpResponse.json({ j: 9 });
-      }),
-    );
-    // server.use(
-    //   http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
-    //     console.log(2323);
-    //     return HttpResponse.json({ k: 9 });
-    //   }),
-    // );
-    // server.use(usersListMockHandler);
+    server.use(usersListMockHandler);
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
 
     // await waitFor(() => {
@@ -101,5 +89,6 @@ describe("api component testing", () => {
     const testID = /UsersTable/;
     const successComponent = screen.getByTestId(testID);
     expect(successComponent).toBeVisible();
+    screen.debug(successComponent);
   });
 });
