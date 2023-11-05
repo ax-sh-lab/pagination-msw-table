@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { PropsWithChildren, useState } from "react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
+import { PropsWithChildren, useState } from "react";
 
 export function TestQueryClientWrapper({ children }: PropsWithChildren) {
   const [queryClient] = useState(

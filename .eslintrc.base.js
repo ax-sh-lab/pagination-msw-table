@@ -19,11 +19,30 @@ module.exports = defineConfig({
   rules: {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "@typescript-eslint/consistent-type-imports": "error",
+
+    "@typescript-eslint/consistent-type-imports": [
+      "warn",
+      {
+        prefer: "type-imports",
+        fixStyle: "inline-type-imports",
+      },
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        devDependencies: true,
+      },
+    ],
   },
   env: {
     node: true,
     browser: true,
     es2021: true,
   },
+  overrides: [
+    {
+      files: ["**/*.test.ts", "**/*.test.tsx"],
+      extends: ["plugin:testing-library/react"],
+    },
+  ],
 });
