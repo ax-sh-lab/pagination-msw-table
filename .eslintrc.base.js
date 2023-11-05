@@ -2,6 +2,7 @@ const { defineConfig } = require("eslint-define-config");
 const prettierConfig = require("eslint-config-prettier");
 
 module.exports = defineConfig({
+  extends: ["./.eslintrc.prettier.js"],
   env: {
     node: true,
     browser: true,
