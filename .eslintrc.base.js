@@ -4,7 +4,6 @@ const { defineConfig } = require("eslint-define-config");
 module.exports = defineConfig({
   extends: [
     "./.eslintrc.prettier.js",
-
     "plugin:import/recommended",
     // alternatively, 'recommended' is the combination of these two rule sets:
     // "plugin:import/errors",
@@ -14,11 +13,13 @@ module.exports = defineConfig({
   plugins: [
     "@tanstack/query",
     "simple-import-sort",
+    "testing-library",
     // "node"
   ],
   rules: {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
   },
   env: {
     node: true,

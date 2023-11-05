@@ -124,6 +124,9 @@ devDependencies:
   eslint-plugin-simple-import-sort:
     specifier: ^10.0.0
     version: 10.0.0(eslint@8.53.0)
+  eslint-plugin-testing-library:
+    specifier: ^6.1.0
+    version: 6.1.0(eslint@8.53.0)(typescript@5.2.2)
   happy-dom:
     specifier: ^12.10.3
     version: 12.10.3
@@ -2595,6 +2598,19 @@ packages:
       eslint: '>=5.0.0'
     dependencies:
       eslint: 8.53.0
+    dev: true
+
+  /eslint-plugin-testing-library@6.1.0(eslint@8.53.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-r7kE+az3tbp8vyRwfyAGZ6V/xw+XvdWFPicIo6jbOPZoossOFDeHizARqPGV6gEkyF8hyCFhhH3mlQOGS3N5Sg==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
+    peerDependencies:
+      eslint: ^7.5.0 || ^8.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.62.0(eslint@8.53.0)(typescript@5.2.2)
+      eslint: 8.53.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
     dev: true
 
   /eslint-scope@5.1.1:
