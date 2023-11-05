@@ -42,7 +42,11 @@ export function UsersTable() {
   });
   if (users.isLoading) return <LoadingWrapper>Loading...</LoadingWrapper>;
   if (users.isError)
-    return <ErrorWrapper>Error {users.error.message}</ErrorWrapper>;
+    return (
+      <ErrorWrapper>
+        Error:<p>{users.error.message}</p>
+      </ErrorWrapper>
+    );
 
   return (
     <div data-testid={"UsersTable"}>
