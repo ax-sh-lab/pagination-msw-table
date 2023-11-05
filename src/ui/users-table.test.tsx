@@ -1,17 +1,17 @@
-import { UsersTable } from "@/ui/users-table";
 import {
   render,
   screen,
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
+import { delay, http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 
+import { API_ROUTE } from "@/api";
+import { mockAPIBaseJoinPath } from "@/mocks";
 import { usersListMockHandler } from "@/mocks/handlers/users-list-mock-handler";
 import { TestQueryClientWrapper } from "@/ui/test-query-client.wrapper";
-import { http, HttpResponse, delay } from "msw";
-import { mockAPIBaseJoinPath } from "@/mocks";
-import { API_ROUTE } from "@/api";
+import { UsersTable } from "@/ui/users-table";
 
 const server = setupServer();
 describe(UsersTable.name, () => {

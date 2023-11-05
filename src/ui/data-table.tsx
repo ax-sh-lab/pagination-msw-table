@@ -8,8 +8,9 @@ import {
   Updater,
   useReactTable,
 } from "@tanstack/react-table";
-
 import { Dispatch, SetStateAction } from "react";
+
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -18,7 +19,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
 
 type DataTableProps<TColumn extends object> = {
   columns: ColumnDef<TColumn>[];

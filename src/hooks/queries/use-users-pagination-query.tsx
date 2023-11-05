@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
 import { PaginationState, SortingState } from "@tanstack/react-table";
+import { useMemo, useState } from "react";
+
 import { useUsersQuery } from "@/hooks/queries/use-users-query";
 import { computeTotalPages } from "@/mocks/utils/compute-total-pages";
 

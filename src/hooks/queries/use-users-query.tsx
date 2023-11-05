@@ -1,10 +1,11 @@
-import { API_ROUTE, apiClient } from "@/api";
 import {
   keepPreviousData,
   UndefinedInitialDataOptions,
   useQuery,
 } from "@tanstack/react-query";
 import { z } from "zod";
+
+import { API_ROUTE, apiClient } from "@/api";
 import { PaginationResponse } from "@/types";
 
 const FetchUsersParamsSchema = z.object({

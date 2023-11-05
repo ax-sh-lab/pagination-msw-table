@@ -1,5 +1,6 @@
 // Intercept the "GET /resource" request.
 import { delay, http } from "msw";
+
 import { API_ROUTE } from "@/api";
 
 export const profileMockHandler = http.get(API_ROUTE.PROFILE, async () => {
