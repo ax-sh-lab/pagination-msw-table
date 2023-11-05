@@ -7,16 +7,16 @@ settings:
 dependencies:
   '@radix-ui/react-slot':
     specifier: ^1.0.2
-    version: 1.0.2(@types/react@18.2.34)(react@18.2.0)
+    version: 1.0.2(@types/react@18.2.35)(react@18.2.0)
   '@t3-oss/env-nextjs':
     specifier: ^0.7.1
     version: 0.7.1(typescript@5.2.2)(zod@3.22.4)
   '@tanstack/react-query':
-    specifier: ^5.4.3
-    version: 5.4.3(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.7.2
+    version: 5.7.2(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-query-devtools':
-    specifier: ^5.4.3
-    version: 5.4.3(@tanstack/react-query@5.4.3)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.7.2
+    version: 5.7.2(@tanstack/react-query@5.7.2)(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-table':
     specifier: ^8.10.7
     version: 8.10.7(react-dom@18.2.0)(react@18.2.0)
@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^20
     version: 20.8.10
   '@types/react':
-    specifier: ^18
-    version: 18.2.34
+    specifier: ^18.2.35
+    version: 18.2.35
   '@types/react-dom':
     specifier: ^18
     version: 18.2.14
@@ -137,8 +137,8 @@ devDependencies:
     specifier: ^22.1.0
     version: 22.1.0
   msw:
-    specifier: ^2.0.2
-    version: 2.0.2(typescript@5.2.2)
+    specifier: ^2.0.3
+    version: 2.0.3(typescript@5.2.2)
   next-router-mock:
     specifier: ^0.9.10
     version: 0.9.10(next@14.0.1)(react@18.2.0)
@@ -904,7 +904,7 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.34)(react@18.2.0):
+  /@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.35)(react@18.2.0):
     resolution: {integrity: sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw==}
     peerDependencies:
       '@types/react': '*'
@@ -914,11 +914,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.2
-      '@types/react': 18.2.34
+      '@types/react': 18.2.35
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-slot@1.0.2(@types/react@18.2.34)(react@18.2.0):
+  /@radix-ui/react-slot@1.0.2(@types/react@18.2.35)(react@18.2.0):
     resolution: {integrity: sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==}
     peerDependencies:
       '@types/react': '*'
@@ -928,8 +928,8 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.2
-      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.34)(react@18.2.0)
-      '@types/react': 18.2.34
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.35)(react@18.2.0)
+      '@types/react': 18.2.35
       react: 18.2.0
     dev: false
 
@@ -997,29 +997,29 @@ packages:
       - typescript
     dev: true
 
-  /@tanstack/query-core@5.4.3:
-    resolution: {integrity: sha512-fnI9ORjcuLGm1sNrKatKIosRQUpuqcD4SV7RqRSVmj8JSicX2aoMyKryHEBpVQvf6N4PaBVgBxQomjsbsGPssQ==}
+  /@tanstack/query-core@5.7.2:
+    resolution: {integrity: sha512-vPYoNCOI8W+jFLnyEAYQL7/qURE7XzVE/TvkmNSko8LU55jFshee342p4GNFOTsYFgJty7Da5bw4m2P3vaKWMw==}
     dev: false
 
   /@tanstack/query-devtools@5.4.2:
     resolution: {integrity: sha512-EXdaMXi8CxZuMp97J5mq6wy1RduOfoWFv5vtA1U+hyqb8Wst6M8kkkjDSdFvGZIRpYY4K8mKLlEFHNUZDG5dtw==}
     dev: false
 
-  /@tanstack/react-query-devtools@5.4.3(@tanstack/react-query@5.4.3)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-J9EB50vpK5yvQ5W+AOp9jIQa+1mld+Wwc2GF3VLr2SEDhOyiTiHOjrFGKKL1Cal5Wg8UuS3vexf8trElrtg05A==}
+  /@tanstack/react-query-devtools@5.7.2(@tanstack/react-query@5.7.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-yYkzdmlntdJsy+GZzCabQGxxMjhRYayQzxe7OqYYFPnLEFf/eWkbH3cjyTBlGSKqpUN/8T5QS3P1Xur+l9hEng==}
     peerDependencies:
-      '@tanstack/react-query': ^5.4.3
+      '@tanstack/react-query': ^5.7.2
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
       '@tanstack/query-devtools': 5.4.2
-      '@tanstack/react-query': 5.4.3(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/react-query': 5.7.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@tanstack/react-query@5.4.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-4aSOrRNa6yEmf7mws5QPTVMn8Lp7L38tFoTZ0c1ZmhIvbr8GIA0WT7X5N3yz/nuK8hUtjw9cAzBr4BPDZZ+tzA==}
+  /@tanstack/react-query@5.7.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NMsfz0Wd3VPDvSpX9sw2x07r0kf9HwuAlNNHQvwMUHM7EcuVN/LYmlmTe40dWER1c/92Jhc5LODdtW0PyvHsFg==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -1030,7 +1030,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 5.4.3
+      '@tanstack/query-core': 5.7.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -1214,11 +1214,11 @@ packages:
   /@types/react-dom@18.2.14:
     resolution: {integrity: sha512-V835xgdSVmyQmI1KLV2BEIUgqEuinxp9O4G6g3FqO/SqLac049E53aysv0oEFD2kHfejeKU+ZqL2bcFWj9gLAQ==}
     dependencies:
-      '@types/react': 18.2.34
+      '@types/react': 18.2.35
     dev: true
 
-  /@types/react@18.2.34:
-    resolution: {integrity: sha512-U6eW/alrRk37FU/MS2RYMjx0Va2JGIVXELTODaTIYgvWGCV4Y4TfTUzG8DdmpDNIT0Xpj/R7GfyHOJJrDttcvg==}
+  /@types/react@18.2.35:
+    resolution: {integrity: sha512-LG3xpFZ++rTndV+/XFyX5vUP7NI9yxyk+MQvBDq+CVs8I9DLSc3Ymwb1Vmw5YDoeNeHN4PDZa3HylMKJYT9PNQ==}
     dependencies:
       '@types/prop-types': 15.7.9
       '@types/scheduler': 0.16.5
@@ -3947,8 +3947,8 @@ packages:
     dev: true
     optional: true
 
-  /msw@2.0.2(typescript@5.2.2):
-    resolution: {integrity: sha512-loyQnNUDY1x05R/t2naVdtNhP+tfyf+ckEwtvRUuoK9JnDeoh3/ZN3Fu2ZtvO/iJ3IwwuLizWwWaxBxS3sDQUw==}
+  /msw@2.0.3(typescript@5.2.2):
+    resolution: {integrity: sha512-PFIo99h862DiVazndQmko1vJFNNhog0CYajK6N12ESzeLURYJlUglv9ObzWmRCAN3DRVuq7BUeI+eBgRk7oYaQ==}
     engines: {node: '>=18'}
     hasBin: true
     requiresBuild: true
