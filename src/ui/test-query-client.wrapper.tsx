@@ -1,8 +1,15 @@
 import { PropsWithChildren } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider/next-13";
 
 export function TestQueryClientWrapper({ children }: PropsWithChildren) {
   const queryClient = new QueryClient({
+    // logger: {
+    //   log: console.log,
+    //   warn: console.warn,
+    //   // ✅ no more errors on the console for tests
+    //   error: process.env.NODE_ENV === "test" ? () => {} : console.error,
+    // },
     defaultOptions: {
       queries: {
         // ✅ turns retries off
@@ -16,10 +23,10 @@ export function TestQueryClientWrapper({ children }: PropsWithChildren) {
       },
     },
   });
-  {
-    /*</MemoryRouterProvider>*/
-  }
+
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <MemoryRouterProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </MemoryRouterProvider>
   );
 }
