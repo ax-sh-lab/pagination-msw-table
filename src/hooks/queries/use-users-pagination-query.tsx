@@ -1,3 +1,4 @@
+import { keepPreviousData } from '@tanstack/react-query';
 import { type PaginationState, type SortingState } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 
@@ -19,6 +20,7 @@ export function useUsersPaginationQuery({
   const query = useUsersQuery({
     page: pagination.pageIndex,
     perPage: pagination.pageSize,
+    placeholderData: keepPreviousData,
   });
 
   // const pageCount = useMemo(

@@ -22,15 +22,7 @@ export default function Home() {
   }
 
   return (
-    <main
-      className={clsx(
-        'flex flex-col',
-        'items-center justify-between',
-        `min-h-screen`,
-        'container mx-auto',
-        inter.className,
-      )}
-    >
+    <main className={clsx(`min-h-screen`, 'container mx-auto', inter.className)}>
       <JSONViewer data={data} />
       <UsersTable />
     </main>

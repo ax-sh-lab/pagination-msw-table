@@ -1,7 +1,8 @@
 import {
-  keepPreviousData,
-  type UndefinedInitialDataOptions,
+  // DefinedInitialDataOptions,
+  // type UndefinedInitialDataOptions,
   useQuery,
+  type UseQueryOptions,
 } from '@tanstack/react-query';
 import { z } from 'zod';
 
@@ -19,15 +20,15 @@ export async function fetchUsers({ page = 1, perPage = 10 }: FetchUsersParams) {
     .then(response => response.data);
 }
 
-export function useUsersQuery({
+export function useUsersQuery<T = PaginationResponse<any>>({
   page,
   perPage,
   placeholderData,
-}: FetchUsersParams & Pick<UndefinedInitialDataOptions, 'placeholderData'>) {
-  return useQuery<PaginationResponse<unknown>>({
+}: FetchUsersParams & Pick<UseQueryOptions<T>, 'placeholderData'>) {
+  return useQuery<T>({
     queryKey: [API_ROUTE.USERS, page, perPage],
     queryFn: () => fetchUsers({ page, perPage }),
-    placeholderData: keepPreviousData,
+    placeholderData,
     enabled: Boolean(page && perPage),
   });
 }
