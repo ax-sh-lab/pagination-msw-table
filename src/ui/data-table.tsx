@@ -22,7 +22,7 @@ import {
 
 type DataTableProps<TColumn extends object> = {
   columns: ColumnDef<TColumn>[];
-  data: unknown;
+  data: any;
   pagination: PaginationState;
   setPagination: (pagination: Updater<PaginationState>) => void;
   sorting: SortingState;
