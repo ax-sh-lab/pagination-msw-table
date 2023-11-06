@@ -1,10 +1,10 @@
-import axios, { InternalAxiosRequestConfig } from "axios";
+import axios, { type InternalAxiosRequestConfig } from 'axios';
 
-import { env } from "../../env";
+import { env } from '../../env';
 
 export const API_ROUTE = {
-  PROFILE: "/api/profile",
-  USERS: "/api/users",
+  PROFILE: '/api/profile',
+  USERS: '/api/users',
 } as const;
 
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
@@ -26,20 +26,20 @@ export const apiClient = axios.create({
 
 apiClient.interceptors.request.use(authRequestInterceptor);
 apiClient.interceptors.request.use(
-  (request) => {
+  request => {
     // setAuthHeaders(request);
     return request;
   },
-  (error) => Promise.reject(error),
+  error => Promise.reject(error),
 );
 
 axios.interceptors.response.use(
-  (response) => {
+  response => {
     return response.data;
   },
-  (error) => {
+  error => {
     const message = error.response?.data?.message || error.message;
-    console.log("Axios", message);
+    console.log('Axios', message);
     // useNotificationStore.getState().addNotification({
     //   type: 'error',
     //   title: 'Error',
@@ -51,5 +51,5 @@ axios.interceptors.response.use(
 );
 
 export function fetchProfile() {
-  return apiClient.get(API_ROUTE.PROFILE).then((response) => response.data);
+  return apiClient.get(API_ROUTE.PROFILE).then(response => response.data);
 }

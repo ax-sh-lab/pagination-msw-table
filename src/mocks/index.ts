@@ -1,4 +1,4 @@
-import { env } from "../../env";
+import { env } from '../../env';
 
 // TODO add type safety on path
 export function mockAPIBaseJoinPath(path: string) {
@@ -6,9 +6,9 @@ export function mockAPIBaseJoinPath(path: string) {
 }
 
 export async function initMocks() {
-  console.log("init mocks");
-  if (typeof window !== "undefined") {
-    const { worker } = await import("./browser");
+  console.log('init mocks');
+  if (typeof window !== 'undefined') {
+    const { worker } = await import('./browser');
     // example
     // function onUnhandledRequest(request, print) {
     //   // Ignore any requests containing "cdn.com" in their URL.

@@ -1,7 +1,7 @@
 // Intercept the "GET /resource" request.
-import { delay, http } from "msw";
+import { delay, http } from 'msw';
 
-import { API_ROUTE } from "@/lib/api-client";
+import { API_ROUTE } from '@/lib/api-client';
 
 export const profileMockHandler = http.get(API_ROUTE.PROFILE, async () => {
   // http.get(mockAPIBaseJoinPath(API_ROUTE.PROFILE), () => {
@@ -10,5 +10,5 @@ export const profileMockHandler = http.get(API_ROUTE.PROFILE, async () => {
   // await delay("infinite");
   // await delay(1000);
   await delay();
-  return new Response("User");
+  return new Response('User');
 });

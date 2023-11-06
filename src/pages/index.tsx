@@ -1,13 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import clsx from "clsx";
-import { Inter } from "next/font/google";
+import { useQuery } from '@tanstack/react-query';
+import clsx from 'clsx';
+import { Inter } from 'next/font/google';
 
-import { API_ROUTE, fetchProfile } from "@/lib/api-client";
-import { JSONViewer } from "@/ui/JSONViewer";
-import Loader from "@/ui/loader";
-import { UsersTable } from "@/ui/users-table";
+import { API_ROUTE, fetchProfile } from '@/lib/api-client';
+import { JSONViewer } from '@/ui/JSONViewer';
+import Loader from '@/ui/loader';
+import { UsersTable } from '@/ui/users-table';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 function useProfileQuery() {
   return useQuery({ queryFn: fetchProfile, queryKey: [API_ROUTE.PROFILE] });
@@ -24,10 +24,10 @@ export default function Home() {
   return (
     <main
       className={clsx(
-        "flex flex-col",
-        "items-center justify-between",
+        'flex flex-col',
+        'items-center justify-between',
         `min-h-screen`,
-        "container mx-auto",
+        'container mx-auto',
         inter.className,
       )}
     >

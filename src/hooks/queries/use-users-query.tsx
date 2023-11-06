@@ -1,12 +1,12 @@
 import {
   keepPreviousData,
-  UndefinedInitialDataOptions,
+  type UndefinedInitialDataOptions,
   useQuery,
-} from "@tanstack/react-query";
-import { z } from "zod";
+} from '@tanstack/react-query';
+import { z } from 'zod';
 
-import { API_ROUTE, apiClient } from "@/lib/api-client";
-import { PaginationResponse } from "@/types";
+import { API_ROUTE, apiClient } from '@/lib/api-client';
+import { type PaginationResponse } from '@/types';
 
 const FetchUsersParamsSchema = z.object({
   page: z.number().default(1).optional(),
@@ -16,15 +16,15 @@ export type FetchUsersParams = z.infer<typeof FetchUsersParamsSchema>;
 export async function fetchUsers({ page = 1, perPage = 10 }: FetchUsersParams) {
   return apiClient
     .get(API_ROUTE.USERS, { params: { page, perPage } })
-    .then((response) => response.data);
+    .then(response => response.data);
 }
 
 export function useUsersQuery({
   page,
   perPage,
   placeholderData,
-}: FetchUsersParams & Pick<UndefinedInitialDataOptions, "placeholderData">) {
-  return useQuery<PaginationResponse<any>>({
+}: FetchUsersParams & Pick<UndefinedInitialDataOptions, 'placeholderData'>) {
+  return useQuery<PaginationResponse<unknown>>({
     queryKey: [API_ROUTE.USERS, page, perPage],
     queryFn: () => fetchUsers({ page, perPage }),
     placeholderData: keepPreviousData,

@@ -1,16 +1,16 @@
-import "@/styles/globals.css";
+import '@/styles/globals.css';
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import type { AppProps } from "next/app";
-import { type PropsWithChildren } from "react";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import type { AppProps } from 'next/app';
+import { type PropsWithChildren } from 'react';
 
-import { env } from "../../env";
+import { env } from '../../env';
 
 // NOTE enable msw mocking
 // TODO find a better way to initialize mocking
-if (env.NEXT_PUBLIC_API_MOCKING && typeof window !== "undefined") {
-  require("../mocks").initMocks();
+if (env.NEXT_PUBLIC_API_MOCKING && typeof window !== 'undefined') {
+  require('../mocks').initMocks();
 }
 
 // Create a client
