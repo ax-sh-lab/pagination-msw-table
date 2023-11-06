@@ -1,36 +1,44 @@
-const { defineConfig } = require("eslint-define-config");
+const { defineConfig } = require('eslint-define-config');
 // const prettierConfig = require("eslint-config-prettier");
 
 module.exports = defineConfig({
   extends: [
-    "plugin:@typescript-eslint/recommended",
-    "./.eslintrc.prettier.js",
-    "plugin:import/recommended",
+    'plugin:@typescript-eslint/recommended',
+    './.eslintrc.prettier.js',
+    'plugin:import/recommended',
     // alternatively, 'recommended' is the combination of these two rule sets:
     // "plugin:import/errors",
     // "plugin:import/warnings",
   ],
 
   plugins: [
-    "@typescript-eslint",
-    "@tanstack/query",
-    "simple-import-sort",
-    "testing-library",
+    '@typescript-eslint',
+    '@tanstack/query',
+    'simple-import-sort',
+    'testing-library',
     // "node"
   ],
   rules: {
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'import/named': 'warn',
 
-    "@typescript-eslint/consistent-type-imports": [
-      "warn",
+    '@typescript-eslint/no-explicit-any': [
+      'warn',
       {
-        prefer: "type-imports",
-        fixStyle: "inline-type-imports",
+        fixToUnknown: true,
       },
     ],
-    "import/no-extraneous-dependencies": [
-      "error",
+
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
+      {
+        prefer: 'type-imports',
+        fixStyle: 'inline-type-imports',
+      },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
       {
         devDependencies: true,
       },
@@ -43,8 +51,8 @@ module.exports = defineConfig({
   },
   overrides: [
     {
-      files: ["**/*.test.ts", "**/*.test.tsx"],
-      extends: ["plugin:testing-library/react"],
+      files: ['**/*.test.ts', '**/*.test.tsx'],
+      extends: ['plugin:testing-library/react'],
     },
   ],
 });

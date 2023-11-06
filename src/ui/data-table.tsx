@@ -1,16 +1,16 @@
 import {
-  ColumnDef,
+  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  PaginationState,
-  SortingState,
-  Updater,
+  type PaginationState,
+  type SortingState,
+  type Updater,
   useReactTable,
-} from "@tanstack/react-table";
-import { Dispatch, SetStateAction } from "react";
+} from '@tanstack/react-table';
+import { type Dispatch, type SetStateAction } from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -18,11 +18,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
 type DataTableProps<TColumn extends object> = {
   columns: ColumnDef<TColumn>[];
-  data: any;
+  data: unknown;
   pagination: PaginationState;
   setPagination: (pagination: Updater<PaginationState>) => void;
   sorting: SortingState;
@@ -64,19 +64,16 @@ export function DataTable<TColumn extends object>({
 
   return (
     <div className="rounded-md border container ">
-      <Table className={"DataTable"}>
+      <Table className={'DataTable'}>
         <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
+          {table.getHeaderGroups().map(headerGroup => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
+              {headerGroup.headers.map(header => {
                 return (
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
+                      : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 );
               })}
@@ -85,12 +82,9 @@ export function DataTable<TColumn extends object>({
         </TableHeader>
         <TableBody>
           {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
-                {row.getVisibleCells().map((cell) => (
+            table.getRowModel().rows.map(row => (
+              <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                {row.getVisibleCells().map(cell => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>

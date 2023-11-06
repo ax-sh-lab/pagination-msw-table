@@ -1,16 +1,12 @@
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
-import { delay, http, HttpResponse } from "msw";
-import { setupServer } from "msw/node";
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { delay, http, HttpResponse } from 'msw';
+import { setupServer } from 'msw/node';
 
-import { API_ROUTE } from "@/lib/api-client";
-import { mockAPIBaseJoinPath } from "@/mocks";
-import { usersListMockHandler } from "@/mocks/handlers/users-list-mock-handler";
-import { TestQueryClientWrapper } from "@/ui/test-query-client.wrapper";
-import { UsersTable } from "@/ui/users-table";
+import { API_ROUTE } from '@/lib/api-client';
+import { mockAPIBaseJoinPath } from '@/mocks';
+import { usersListMockHandler } from '@/mocks/handlers/users-list-mock-handler';
+import { TestQueryClientWrapper } from '@/ui/test-query-client.wrapper';
+import { UsersTable } from '@/ui/users-table';
 
 const server = setupServer();
 describe(UsersTable.name, () => {
@@ -25,32 +21,32 @@ describe(UsersTable.name, () => {
   // Don't forget to clean up after-wards.
   afterAll(() => server.close());
 
-  it("show loading", () => {
+  it('show loading', () => {
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
     expect(screen.getByText(/Loading.../)).toBeInTheDocument();
   });
 
-  it("show error", async () => {
+  it('show error', async () => {
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
     const error = await screen.findByText(/Loading.../);
     expect(error).toBeInTheDocument();
   });
 
-  it("should render", () => {
-    render(<div className={"test"}>...</div>);
-    expect(screen.getByText("...")).not.toHaveClass("tesg");
-    screen.logTestingPlaygroundURL();
+  it('should render', () => {
+    render(<div className={'test'}>...</div>);
+    expect(screen.getByText('...')).not.toHaveClass('tesg');
+    // screen.logTestingPlaygroundURL();
   });
 
   beforeAll(() => server.listen());
   // beforeAll(() => server.listen({ onUnhandledRequest: "warn" }));
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
-  it("show loading result", async () => {
+  it('show loading result', async () => {
     server.use(
       http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), async () => {
-        await delay("infinite");
-        return HttpResponse.json("error", { status: 500 });
+        await delay('infinite');
+        return HttpResponse.json('error', { status: 500 });
       }),
     );
 
@@ -59,10 +55,10 @@ describe(UsersTable.name, () => {
     const successComponent = screen.getByTestId(/LoadingWrapper/);
     expect(successComponent).toBeVisible();
   });
-  it("show error result", async () => {
+  it('show error result', async () => {
     server.use(
       http.get(mockAPIBaseJoinPath(API_ROUTE.USERS), () => {
-        return HttpResponse.json("error", { status: 500 });
+        return HttpResponse.json('error', { status: 500 });
       }),
     );
 
@@ -73,7 +69,7 @@ describe(UsersTable.name, () => {
     expect(successComponent).toBeVisible();
   });
 
-  it("show successful result", async () => {
+  it('show successful result', async () => {
     server.use(usersListMockHandler);
     render(<UsersTable />, { wrapper: TestQueryClientWrapper });
 
