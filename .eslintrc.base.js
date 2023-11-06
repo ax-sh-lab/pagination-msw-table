@@ -19,6 +19,12 @@ module.exports = defineConfig({
     // "node"
   ],
   rules: {
+    'testing-library/await-async-queries': 'error',
+    'testing-library/no-await-sync-queries': 'error',
+    'testing-library/no-debugging-utils': 'warn',
+    'testing-library/no-dom-import': 'off',
+
+    // NOTE sort imports
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'import/named': 'warn',
@@ -51,7 +57,7 @@ module.exports = defineConfig({
   },
   overrides: [
     {
-      files: ['**/*.test.ts', '**/*.test.tsx'],
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
       extends: ['plugin:testing-library/react'],
     },
   ],

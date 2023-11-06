@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint -f stylish",
     "lint:fix": "pnpm lint --fix",
+    "lint:types": "tsc",
     "lint:table": "next lint -f table",
     "lint:pretty": "next lint -f mo",
     "test": "pnpm vitest",
