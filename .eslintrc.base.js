@@ -33,7 +33,7 @@ module.exports = defineConfig({
     '@typescript-eslint/no-explicit-any': [
       'warn',
       {
-        fixToUnknown: true,
+        fixToUnknown: false,
       },
     ],
 
