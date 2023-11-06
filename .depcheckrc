@@ -1,0 +1,2 @@
+ignores: ["eslint", "eslint-*", "autoprefixer","postcss", "@vitest/coverage-v8", "@types/node","tailwind-variants"]
+skip-missing: true

@@ -11,7 +11,8 @@
     "lint:table": "next lint -f table",
     "lint:pretty": "next lint -f mo",
     "test": "pnpm vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "depcheck": "pnpx depcheck"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
