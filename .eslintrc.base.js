@@ -4,8 +4,9 @@ const { defineConfig } = require('eslint-define-config');
 module.exports = defineConfig({
   extends: [
     'plugin:@typescript-eslint/recommended',
-    './.eslintrc.prettier.js',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:import/recommended',
+    './.eslintrc.prettier.js',
     // alternatively, 'recommended' is the combination of these two rule sets:
     // "plugin:import/errors",
     // "plugin:import/warnings",

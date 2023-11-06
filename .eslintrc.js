@@ -1,11 +1,11 @@
-const { defineConfig } = require("eslint-define-config");
+const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
   extends: [
-    "./.eslintrc.base.js",
-    "next/core-web-vitals",
-    "plugin:@tanstack/eslint-plugin-query/recommended",
+    'next/core-web-vitals',
+
     // NOTE: Turns off all rules that are unnecessary or might conflict with Prettier.
-    "prettier",
+    'prettier',
+    './.eslintrc.base.js',
   ],
 });
