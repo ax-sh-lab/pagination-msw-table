@@ -10,14 +10,13 @@ import { computeTotalPages } from '@/mocks/utils/compute-total-pages';
 import { type PaginationResponse } from '@/types';
 
 type ListMockPathParams = unknown;
-type ListMockRequestBodyType = {};
+type ListMockRequestBodyType = { k: 9 };
 type ListMockResponseBodyType = unknown;
 
 const url = mockAPIBaseJoinPath(API_ROUTE.USERS);
 
 // NOTE this populates the user db with 100 users
 range(1, 31).map(i => {
-  console.log(i, '<<<<');
   db.user.create();
 });
 
@@ -27,7 +26,8 @@ export const usersListMockHandler = http.get<
   ListMockResponseBodyType
 >(url, async ({ request }) => {
   // console.log(await request.json());
-
+  // request.json().then(data => console.log(44, data));
+  console.log(await request.text(), 444);
   const url = new URL(request.url);
 
   const page = Number(url.searchParams.get('page') || 1);
