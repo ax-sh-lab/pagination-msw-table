@@ -4,13 +4,13 @@ import {
   getCoreRowModel,
   getSortedRowModel,
   type PaginationState,
+  type RowData,
   type SortingState,
   type Updater,
   useReactTable,
 } from '@tanstack/react-table';
 import { type Dispatch, type SetStateAction } from 'react';
 
-import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -19,6 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { TablePagination } from '@/ui/table-pagination';
 
 type DataTableProps<TColumn extends object> = {
   columns: ColumnDef<TColumn>[];
@@ -41,7 +42,7 @@ export function DataTable<TColumn extends object>({
   pagination,
   setPagination,
 }: DataTableProps<TColumn>) {
-  const table = useReactTable({
+  const table = useReactTable<TColumn>({
     manualPagination: true,
 
     // debugTable: sta !== pr,
@@ -63,7 +64,7 @@ export function DataTable<TColumn extends object>({
   });
 
   return (
-    <div className="rounded-md border container ">
+    <div className="rounded-md border container">
       <Table className={'DataTable'}>
         <TableHeader>
           {table.getHeaderGroups().map(headerGroup => (
@@ -100,25 +101,7 @@ export function DataTable<TColumn extends object>({
           )}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <span>Page: {table.getState().pagination.pageIndex + 1}</span>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </Button>
-      </div>
+      <TablePagination<TColumn> table={table} />
     </div>
   );
 }

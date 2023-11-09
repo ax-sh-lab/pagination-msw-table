@@ -2,7 +2,7 @@ import type { RowData, Table } from '@tanstack/react-table';
 
 import { Button, IconButton } from '@/components/ui/button';
 
-export function TablePagination({ table }: { table: Table<RowData> }) {
+export function TablePagination<T>({ table }: { table: Table<T> }) {
   return (
     <div className="flex items-center gap-2">
       <IconButton
